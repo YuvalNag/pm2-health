@@ -28,6 +28,7 @@ After installation run `pm2 conf` to configure module. Alternatively edit `modul
         "secure": false,
         "disabled": false,
         "clientHostName": "your-machine.com", // optional, will force the client host-name FQDN used in SMTP HELLO. If not set, NodeMailer will ask host name to the OS, and use 127.0.0.1 if it's not a FQDN.
+        "http_proxy": "http://your-proxy-host:proxy-port", // optional, will send the mail through proxy server. Make sure that your HTTP proxy supports CONNECT protocol and allows connecting to the SMTP port you want to use. Alternatively, environment var cab be used instead. e.g.: `export http_proxy=http://your-proxy-host:proxy-port`   
     },
     "mailTo": "mail1,mail2"
 }

@@ -1,3 +1,6 @@
+# 1.13.0
+- added optional `http_proxy`
+
 # 1.12.0
 - added optional `clientHostName` into SMTP config
 

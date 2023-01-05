@@ -1,6 +1,7 @@
 import * as Mailer from "nodemailer";
 import * as Fs from "fs";
 import { hostname } from "os";
+import { env } from "process";
 import { info, debug, error } from "./Log";
 
 export interface ISmtpConfig {
@@ -13,6 +14,7 @@ export interface ISmtpConfig {
         from?: string;
         disabled: boolean;
         clientHostName?: string;
+        http_proxy?: string;
     },
     mailTo: string;
     replyTo: string;
@@ -70,7 +72,8 @@ export class Mail {
             tls: { rejectUnauthorized: false },
             secure: this._config.smtp.secure === true,
             auth: null,
-            name: typeof this._config.smtp.clientHostName == "string" && this._config.smtp.clientHostName ? this._config.smtp.clientHostName : null
+            name: typeof this._config.smtp.clientHostName == "string" && this._config.smtp.clientHostName ? this._config.smtp.clientHostName : null,
+            proxy: typeof this._config.smtp.http_proxy == "string" && this._config.smtp.http_proxy ? this._config.smtp.http_proxy : env.http_proxy
         };
 
         if (this._config.smtp.user)
